@@ -1,11 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Github issue tracker</title>
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+
+    <!-- tailwind & daisyUI  -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- style css  -->
+    <link rel="stylesheet" href="./style/style.css">
 </head>
+
 <body>
-    
+    <!-- nav start  -->
+
+    <div class="navbar bg-base-100 shadow-sm py-4">
+
+        <div class="w-11/12 mx-auto flex flex-wrap justify-center md:justify-between items-center">
+            <a href="./main.html" class="flex items-center gap-4">
+                <img src="./assets/github-logo.png" alt="" class="w-12">
+                <p class="text-2xl font-bold">GitHub Issues Tracker</p>
+            </a>
+
+            <div class="flex gap-2 pt-4 md:pt-0">
+                <label class="input">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                            stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input type="search" required placeholder="Search" />
+                </label>
+
+                <button class="btn btn-primary"><span><i class="fa-solid fa-plus"></i></span> New Issue</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- nav end  -->
+
+    <main class="w-9/12 mx-auto">
+
+    <!-- tab section start  -->
+        <section class="my-10">
+            <div class="p-6 bg-white shadow-sm rounded-lg">
+                <button id="all-btn" class="btn">All</button>
+                <button id="open-btn" class="btn">Open</button>
+                <button id="closed-btn" class="btn">Closed</button>
+            </div>
+        </section>
+    <!-- tab section end  -->
+
+    <!-- count section  -->
+        <section class="my-10 p-6 bg-white shadow-sm rounded-lg flex justify-between items-center">
+            <div class="flex gap-2 items-center">
+                <div class="p-2 bg-purple-100 rounded-full"><img src="./assets/Aperture.png" alt=""></div>
+                <div>
+                    <h2 class="text-2xl font-semibold">50 Issues</h2>
+                    <p class="text-[#64748B]">Track and manage your project issues</p>
+                </div>
+            </div>
+
+            <div class="flex gap-2">
+                <p><span class="text-[10px] text-[#00A96E]"><i class="fa-solid fa-circle"></i></span> Open</p>
+                <p><span class="text-[10px] text-[#A855F7]"><i class="fa-solid fa-circle"></i></span> Closed</p>
+            </div>
+        </section>
+    <!-- count section  -->
+
+    <!-- issues div  -->
+        <div id="issues-div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+        
+        </div>
+    <!-- issues div  -->
+
+
+
+    </main>
+
+
+
+    <!-- js links  -->
+    <script src="./script/main.js"></script>
 </body>
+
 </html>
