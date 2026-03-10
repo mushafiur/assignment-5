@@ -76,14 +76,26 @@ const renderIssues = (issues) => {
 
 
 
+const filterIssues = (type) => {
+    if(type === "all"){
+        renderIssues(allIssues);
+    } else if(type === "open"){
+        const openIssues = allIssues.filter(issue => issue.status === "open");
+        renderIssues(openIssues);
+    } else if(type === "closed"){
+        const closedIssues = allIssues.filter(issue => issue.status === "closed");
+        renderIssues(closedIssues);
+    }
+};
+
+
 const loadIssues = async () => {
     const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await response.json();
-
-    const issues = data.data;
-    console.log(issues);
-
-    renderIssues(issues);
+    
+    allIssues = data.data;
+    
+    renderIssues(allIssues);
 };
 
 loadIssues();
