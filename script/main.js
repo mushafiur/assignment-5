@@ -1,16 +1,8 @@
 if (localStorage.getItem("isLoggedIn") !== "true") {
     window.location.href = "index.html";
-}
-
-const loadIssues = async () => {
-    const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
-    const data = await response.json();
-
-    const issues = data.data;
-    console.log(issues);
-
-    renderIssues(issues);
 };
+
+let allIssues = [];
 
 
 
@@ -36,9 +28,10 @@ const getStatusBadge = (status) => {
 
 
 
-
 const renderIssues = (issues) => {
     const issuesDiv = document.getElementById("issues-div");
+
+      document.getElementById("issue-count").innerText = `${issues.length} Issues`;
 
     issuesDiv.innerHTML = "";
 
@@ -79,6 +72,18 @@ const renderIssues = (issues) => {
             </div>
         `;
     });
+};
+
+
+
+const loadIssues = async () => {
+    const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+    const data = await response.json();
+
+    const issues = data.data;
+    console.log(issues);
+
+    renderIssues(issues);
 };
 
 loadIssues();
