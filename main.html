@@ -40,7 +40,7 @@
                             <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" required placeholder="Search" oninput="searchIssues(this.value)"/>
+                    <input type="search" required placeholder="Search" oninput="searchIssues(this.value)" />
                 </label>
 
                 <button class="btn btn-primary"><span><i class="fa-solid fa-plus"></i></span> New Issue</button>
@@ -79,6 +79,11 @@
             </div>
         </section>
         <!-- count section  -->
+
+        <!-- Spinner -->
+        <div id="spinner" class="flex justify-center items-center py-16 hidden">
+            <span class="loading loading-spinner loading-lg text-primary"></span>
+        </div>
 
         <!-- issues div  -->
         <div id="issues-div" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">

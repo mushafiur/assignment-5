@@ -135,10 +135,22 @@ const searchIssues = async (searchText) => {
     const data = await response.json();
 
     renderIssues(data.data);
-}
+};
 
+
+const showSpinner = () => {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("issues-div").classList.add("hidden");
+};
+
+const hideSpinner = () => {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("issues-div").classList.remove("hidden");
+};
 
 const loadIssues = async () => {
+    showSpinner();
+
     const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await response.json();
     
@@ -146,6 +158,8 @@ const loadIssues = async () => {
 
     document.getElementById("all-btn").classList.add("btn-primary");
     
+
+    hideSpinner();
     renderIssues(allIssues);
 };
 
