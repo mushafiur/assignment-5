@@ -42,7 +42,7 @@ const renderIssues = (issues) => {
         const borderColor = isOpen ? "border-t-green-500" : "border-t-purple-500";
 
         issuesDiv.innerHTML += `
-            <div class="card bg-base-100 shadow-sm p-4 border-t-4 ${borderColor}">
+            <div onclick="openModal(${issue.id})" class="card bg-base-100 shadow-sm p-4 border-t-4 ${borderColor}">
                 
                 <!-- Top: Status + Priority -->
                 <div class="flex justify-between items-center mb-3">
@@ -96,7 +96,33 @@ const filterIssues = (type) => {
         const closedIssues = allIssues.filter(issue => issue.status === "closed");
         renderIssues(closedIssues);
     }
-}
+};
+
+
+const openModal = async (id) => {
+
+    const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const data = await response.json();
+    const issue = data.data;
+
+
+    document.getElementById("modal-title").innerText = issue.title;
+    document.getElementById("modal-description").innerText = issue.description;
+    document.getElementById("modal-meta").innerText = `Opened by ${issue.author} • ${issue.createdAt}`;
+    document.getElementById("modal-assignee").innerText = issue.assignee || "Unassigned";
+    document.getElementById("modal-priority").innerText = issue.priority.toUpperCase();
+
+
+    document.getElementById("modal-status").innerHTML = getStatusBadge(issue.status);
+
+
+    document.getElementById("modal-labels").innerHTML = issue.labels.map(label => `
+        <span class="badge badge-outline text-xs">${label}</span>
+    `).join("");
+
+
+    document.getElementById("issue-modal").showModal();
+};
 
 
 const loadIssues = async () => {
