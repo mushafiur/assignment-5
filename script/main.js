@@ -125,6 +125,19 @@ const openModal = async (id) => {
 };
 
 
+const searchIssues = async (searchText) => {
+    if(searchText === ""){
+        renderIssues(allIssues);
+        return;
+    }
+
+    const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`);
+    const data = await response.json();
+
+    renderIssues(data.data);
+}
+
+
 const loadIssues = async () => {
     const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await response.json();
