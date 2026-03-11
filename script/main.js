@@ -77,6 +77,16 @@ const renderIssues = (issues) => {
 
 
 const filterIssues = (type) => {
+
+
+    document.getElementById("all-btn").classList.remove("btn-primary");
+    document.getElementById("open-btn").classList.remove("btn-primary");
+    document.getElementById("closed-btn").classList.remove("btn-primary");
+
+
+    document.getElementById(`${type}-btn`).classList.add("btn-primary");
+
+
     if(type === "all"){
         renderIssues(allIssues);
     } else if(type === "open"){
@@ -86,7 +96,7 @@ const filterIssues = (type) => {
         const closedIssues = allIssues.filter(issue => issue.status === "closed");
         renderIssues(closedIssues);
     }
-};
+}
 
 
 const loadIssues = async () => {
@@ -94,6 +104,8 @@ const loadIssues = async () => {
     const data = await response.json();
     
     allIssues = data.data;
+
+    document.getElementById("all-btn").classList.add("btn-primary");
     
     renderIssues(allIssues);
 };
